@@ -1,5 +1,5 @@
 *** Settings ***
-Library    RPA.Browser.Selenium    auto_close=$[FALSE]
+Library    RPA.Browser.Selenium    auto_close=${FALSE}
 
 *** Variables ***
 ${url}    https://www.taitotalo.fi
