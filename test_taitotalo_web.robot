@@ -11,7 +11,10 @@ Open Taitotalo website, accept cookies, search Python course and click apply
     Accept cookies
     Enter search term
     Do search
-    Apply to first course
+    Open first course
+    Switch to new window
+    Accept cookies 2
+    Apply to course
 
 *** Keywords ***
 Open webpage in browser
@@ -23,5 +26,15 @@ Enter search term
 Do search
     Click Button When Visible    //input[@id="edit-submit-search-results"]
 
-Apply to first course
-    Click Element When Visible    class:button-register
+Open first course
+    Click Element When Visible    (//div[@class="execution-link"]//a)[1]
+    #Click Element When Visible    (//a[@class="button-register btn btn-purple"])[1]
+
+Switch to new window
+    Switch Window    NEW
+
+Accept cookies 2
+    Click Element When Visible    class:cc-btn
+
+Apply to course
+    Click Element When Visible    class:btn-default

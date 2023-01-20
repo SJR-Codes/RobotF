@@ -1,0 +1,10 @@
+tasks:
+  Test Taitotalo webpage:
+    shell: python -m robot --outputdir output --logtitle "Taitotalo web test log" test_taitotalo_web.robot
+
+condaConfigFile: conda.yaml
+artifactsDir: output
+PATH:
+  - .
+PYTHONPATH:
+  - .
