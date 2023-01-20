@@ -5,7 +5,7 @@ Library    RPA.Browser.Selenium    auto_close=${FALSE}
 ${url}    https://j2store.net/freeadmin/administrator/
 ${usern}    manager
 ${passwd}    manager
-${article}    Testikkeli3
+${article}    Testikkeli4
 ${description}    Testiartikkelin kuvaus lorem ipsumit...
 
 *** Tasks ***
