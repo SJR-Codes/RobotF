@@ -32,7 +32,7 @@ Add New Article
     #open textarea
     Click Link    link:Code
     Input Text When Element Is Visible    id:jform_articletext    ${description}
-    Click Button    class:button-apply
+    Click Button    class:button-save
 
 Confirm success
     Element Text Should Be    class:alert-message    Article saved.
