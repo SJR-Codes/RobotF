@@ -25,7 +25,7 @@ Login with username
     Click Button When Visible    class:login-button
 
 Add New Article
-    Click Element When Visible    link:New Article
+    Click Link    link:New Article
     Input Text When Element Is Visible    //input[@id="jform_title"]    ${article}
     #site is slow as heck...
     Wait Until Element Is Visible    link:Code    timeout=30
