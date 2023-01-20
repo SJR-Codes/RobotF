@@ -35,4 +35,4 @@ Add New Article
     Click Button    class:button-save
 
 Confirm success
-    Element Text Should Be    class:alert-message    Article saved.
+    Element Text Should Be    //div[@class="alert alert-success"]//div[@class="alert-message"]    Article saved.
