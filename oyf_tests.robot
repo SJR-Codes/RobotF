@@ -43,3 +43,9 @@ Open connection
 #    Log    Delete user ${uid}  console=yes
     ${resp}=  DELETE On Session  OYF  url=/users/${uid}    headers=${headers}
     Should Be Equal As Strings  ${resp.status_code}  204
+
+#No point doing these 'cause JWT
+#    ${resp}=  POST On Session  OYF  /auth/jwt/logout    headers=${headers}
+#    Should Be Equal As Strings  ${resp.status_code}  200
+#    ${resp}=  GET On Session  OYF  /users/me    headers=${headers}
+#    Should Be Equal As Strings  ${resp.status_code}  401
