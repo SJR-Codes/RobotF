@@ -20,6 +20,7 @@ ${super_headers}    foo
 ${user_headers}    foo
 ${bleh_headers}    Create Dictionary    Content-Type=application/json    Authorization=Bearer bleh
 ${uid}    foo
+${test_image}    Lenna_(test_image).png
 
 *** Tasks ***
 Open OYF API
