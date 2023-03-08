@@ -12,6 +12,8 @@ ${register_url}    auth/register
 ${user_url}    users/
 ${oyf_base_url}    authenticated-route
 ${oyf_categories_url}    categories/
+${oyf_photos_url}    photos/
+${oyf_test_photo_id}    d77ab215-6046-4ccf-8194-bbd316c33b46
 ${admin}    a@a.fo
 ${admin_pass}    asd
 ${usern}    user@example.com
