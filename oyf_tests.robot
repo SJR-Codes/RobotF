@@ -13,26 +13,36 @@ ${user_url}    users/
 ${oyf_base_url}    authenticated-route
 ${oyf_categories_url}    categories/
 ${oyf_photos_url}    photos/
+${oyf_upload_url}    upload/
 ${oyf_test_photo_id}    d77ab215-6046-4ccf-8194-bbd316c33b46
 ${admin}    a@a.fo
 ${admin_pass}    asd
 ${usern}    user@example.com
 ${user_pass}    asd
-${super_headers}    foo
+${token}    gaa
+${super_headers}    guu
 ${user_headers}    foo
 ${bleh_headers}    Create Dictionary    Content-Type=application/json    Authorization=Bearer bleh
-${uid}    foo
+${uid}    gugu
 ${test_image}    Lenna_(test_image).png
+${file_1}  Get Binary File    ${test_image}
+
+${files}    CREATE DICTIONARY  upfile=${file_1}
+
+#${files}    CREATE DICTIONARY    file    ${file_1}
+
 
 *** Tasks ***
 Open OYF API
-    Open Connection
+    Open connection
 Check Admin Authorization
     Is Admin Authorized
 Check OYF as Admin
     Can Admin Access OYF
 Check OYF Categories as Admin
     Can Admin Access OYF Categories
+Check photo upload as Admin
+    Can Admin upload photo
 Check User Adding
     Adding User
 Check User Authorization
@@ -43,6 +53,9 @@ Check OYF as User
     Can User Access OYF
 Check OYF Categories as User
     Can User Access OYF Categories
+
+#Check User Photo Get
+#    Can User Get Photo
 Check User Delete
     Delete User
 Check OYF Without Login
@@ -52,16 +65,17 @@ Check OYF Categories Without Login
 
 
 *** Keywords ***
-Open Connection    
+Open connection    
 #    Create Session    OYF    ${url}     auth=${auth}
     ${heads}=    Create Dictionary    Content-Type=application/x-www-form-urlencoded    User-Agent=RobotFramework
     Create Session      OYF        ${url}
     ${body}=    Create Dictionary    username=${admin}    password=${admin_pass}
     ${response}=    POST On Session    OYF  url=${login_url}    data=${body}    headers=${heads}   expected_status=200
 #    Log  Response is ${response.json()['access_token']}  console=yes
-    ${token}=    Set Variable    ${response.json()['access_token']}
-    ${local_headers}    Create Dictionary    Content-Type=application/json    Authorization=Bearer ${token}
+    ${ltoken}=    Set Variable    ${response.json()['access_token']}
+    ${local_headers}    Create Dictionary    Content-Type=application/json    Authorization=Bearer ${ltoken}
     Set Global Variable    ${super_headers}    ${local_headers}
+    Set Global Variable    ${token}    ${ltoken}
 
 Is Admin Authorized    
 #    Log  Headers is ${headers}  console=yes
@@ -75,6 +89,11 @@ Can Admin Access OYF
 Can Admin Access OYF Categories
     ${resp}=  GET On Session  OYF  ${oyf_categories_url}    headers=${super_headers}   expected_status=200
     #Should Be Equal As Strings  ${resp.json()['message'][:5]}  Hello
+
+Can Admin upload photo
+    ${heads}=    Create Dictionary    Content-Type=multipart/form-data    User-Agent=RobotFramework    Authorization=Bearer ${token}
+    ${body}=    Create Dictionary    files=${files}
+    ${response}=    POST On Session    OYF  ${oyf_upload_url}    data=${files}    headers=${heads}   expected_status=200
 
 Adding User
     ${body}=    Create Dictionary    email=${usern}    password=${user_pass}    is_active=true    is_superuser=false    is_verified=false
